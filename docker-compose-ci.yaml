@@ -27,6 +27,8 @@ services:
         condition: service_completed_successfully
     ports:
       - '8000:8000'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
   migrations:
@@ -42,8 +44,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: sh -c "python manage.py makemigrations &&
-        python manage.py migrate"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    command: python manage.py migrate
 
   db:
     image: postgres:14.6-alpine
