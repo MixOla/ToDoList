@@ -29,8 +29,7 @@ services:
       - '8000:8000'
     volumes:
       - pg_data:/var/lib/postgresql/data
-    command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+
   migrations:
     image: mixola/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     environment:
