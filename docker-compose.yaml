@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   frontend:
-    image: sermalenk/skypro-front:version_1
+    image: sermalenk/skypro-front:lesson-34
     restart: always
     depends_on:
       - api
@@ -25,8 +25,7 @@ services:
         condition: service_completed_successfully
     ports:
       - '8000:8000'
-    volumes:
-      - pg_data:/var/lib/postgresql/data
+
 
   migrations:
     build: .
