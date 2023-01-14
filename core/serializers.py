@@ -79,3 +79,4 @@ class UpdatePasswordSerializer(serializers.ModelSerializer):
         instance.password = make_password(validated_data['new_password'])
         instance.save()
         return instance
+
