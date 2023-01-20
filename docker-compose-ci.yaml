@@ -11,8 +11,6 @@ services:
       - "80:80"
 
   api:
-    image: mixola/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    restart: always
     environment:
       DEBUG: ${DEBUG}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
