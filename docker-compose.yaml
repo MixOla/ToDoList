@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   frontend:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-35
     restart: always
     depends_on:
       - api
@@ -13,13 +13,6 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: mixola/todolist
-    restart: always
-    env_file:
-      - .env
-    environment:
-      POSTGRES_HOST: db
     depends_on:
       db:
         condition: service_healthy
@@ -27,6 +20,8 @@ services:
         condition: service_completed_successfully
     ports:
       - '8000:8000'
+    volumes:
+      - ./.env:/app/.env
 
 
   migrations:
@@ -35,11 +30,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - .env
     volumes:
       - pg_data:/var/lib/postgresql/data
-    command: python manage.py migrate
+    command: python manage.py makemigrations && python manage.py migrate
 
 
 
