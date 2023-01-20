@@ -11,7 +11,7 @@ services:
       - "80:80"
 
   api:
-    image: mixola/todolist_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: mixola/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     environment:
       DEBUG: ${DEBUG}
