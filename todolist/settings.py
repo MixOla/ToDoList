@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'core',
     'social_django',
     'corsheaders',
-    'goals'
+    'goals',
     'django_filters',
 ]
 
