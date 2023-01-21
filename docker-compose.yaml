@@ -23,7 +23,6 @@ services:
     volumes:
       - ./.env:/app/.env
 
-
   migrations:
     build: .
     image: mixola/todolist
@@ -33,8 +32,6 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     command: python manage.py makemigrations && python manage.py migrate
-
-
 
   db:
     image: postgres:14.6-alpine
