@@ -15,6 +15,7 @@ from goals.models import (
     Goal,
     GoalCategory, GoalComment
 )
+from goals.permissions import IsOwnerOrReadOnly
 from goals.serializers import (
     GoalCategoryCreateSerializer,
     GoalCategorySerializer,
