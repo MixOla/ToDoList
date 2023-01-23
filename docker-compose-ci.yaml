@@ -12,7 +12,6 @@ services:
 
   api:
     image: mixola/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    restart: always
     environment:
       DEBUG: ${DEBUG}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -28,12 +27,6 @@ services:
         condition: service_healthy
       migrations:
         condition: service_completed_successfully
-    ports:
-      - '8000:8000'
-    volumes:
-      - ./.env:/app/.env
-    command: >
-      sh -c "python manage.py runserver"
 
   migrations:
     image: mixola/todolist:$GITHUB_REF_NAME-$GITHUB_RUN_ID
@@ -48,8 +41,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    volumes:
-      - pg_data:/var/lib/postgresql/data
+
     command: python manage.py migrate
 
   db:
@@ -69,5 +61,6 @@ services:
       timeout: 3s
       retries: 3
 
+
 volumes:
-    pg_data:
+  pg_data:

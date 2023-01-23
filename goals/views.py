@@ -70,6 +70,8 @@ class GoalCreateView(CreateAPIView):
 
 
 class GoalListView(ListAPIView):
+    "Класс получения списка целей"
+
     model = Goal
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = GoalSerializer
