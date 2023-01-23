@@ -88,7 +88,6 @@ class GoalListView(ListAPIView):
             user=self.request.user).exclude(status=Goal.Status.archived)
 
 
-
 class GoalView(RetrieveUpdateDestroyAPIView):
     model = Goal
     serializer_class = GoalSerializer
