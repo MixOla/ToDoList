@@ -1,3 +1,4 @@
+from django.db import transaction
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import (
     filters,
@@ -57,9 +58,11 @@ class GoalCategoryView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return GoalCategory.objects.filter(user=self.request.user, is_deleted=False)
 
-    def perform_destroy(self, instance):
-        instance.is_deleted = True
-        instance.save()
+    def perform_destroy(self, instance: GoalCategory):
+        with transaction.atomic():
+            instance.is_deleted = True
+            instance.save(update_fields=('is_deleted',))
+            instance.goals.update(status=Goal.Status.archived)
         return instance
 
 
