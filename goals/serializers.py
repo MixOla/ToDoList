@@ -24,7 +24,7 @@ class GoalCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = GoalCategory
         fields = '__all__'
-        read_only_fields = ('id', 'created', 'updated', 'user')
+        read_only_fields = ('id', 'created', 'updated', 'user', 'board')
 
 
 class GoalCreateSerializer(serializers.ModelSerializer):
@@ -98,7 +98,7 @@ class BoardCreateSerializer(serializers.ModelSerializer):
 
 class BoardParticipantSerializer(serializers.ModelSerializer):
     role = serializers.ChoiceField(
-        required=True, choices=BoardParticipant.editable_choices
+        required=True, choices=BoardParticipant.Role.choices
     )
     user = serializers.SlugRelatedField(
         slug_field="username", queryset=User.objects.all()
@@ -154,3 +154,5 @@ class BoardListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = "__all__"
+
+
