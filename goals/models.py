@@ -42,7 +42,7 @@ class BoardParticipant(BaseModel):
         related_name="participants",
     )
     user = models.ForeignKey(
-        User,
+        'core.User',
         verbose_name="Пользователь",
         on_delete=models.PROTECT,
         related_name="participants",
