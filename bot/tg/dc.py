@@ -9,6 +9,7 @@ from marshmallow import Schema, EXCLUDE
 class MessageFrom:
     """Telegram API: https://core.telegram.org/bots/api#user"""
     id: int
+    is_bot: bool
     first_name: Optional[str] = field(default=None)
     last_name: Optional[str] = field(default=None)
     username: Optional[str] = field(default=None)
@@ -18,7 +19,7 @@ class MessageFrom:
 
 
 @dataclass
-class Chat:
+class MessageChat:
     id: int
     type: str
     first_name: Optional[str] = None
@@ -34,7 +35,7 @@ class Chat:
 class Message:
     """Telegram API: https://core.telegram.org/bots/api#message"""
     message_id: int
-    chat: Chat
+    chat: MessageChat
     # override usage of keyword "from" - add underscore and metadata to map to data key
     from_: Optional[MessageFrom] = field(metadata=dict(data_key='from'), default=None)
     text: Optional[str] = field(default=None)

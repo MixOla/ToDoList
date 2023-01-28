@@ -1,9 +1,8 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
-import random
+
 
 from django.utils.crypto import get_random_string
-
-CODE_VOCABULARY = "qwertyuasdfghkzxvbnm123456789"
 
 
 class TgUser(models.Model):
@@ -13,6 +12,7 @@ class TgUser(models.Model):
 
     tg_user_id = models.BigIntegerField(verbose_name="ID пользователя в телеграм")
     tg_chat_id = models.BigIntegerField(verbose_name="ID чата в телеграм", unique=True)
+    tg_username = models.CharField(max_length=32, validators=[MinLengthValidator(5)])
     verification_code = models.CharField(max_length=10, verbose_name="Код для верификации")
     user = models.ForeignKey(
         'core.User', verbose_name="Связанный пользователь приложения", on_delete=models.CASCADE, null=True

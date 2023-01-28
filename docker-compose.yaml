@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   frontend:
-    image: sermalenk/skypro-front:lesson-37
+    image: sermalenk/skypro-front:lesson-38
     restart: always
     depends_on:
       - api
@@ -34,7 +34,18 @@ services:
       - pg_data:/var/lib/postgresql/data
     command: python manage.py makemigrations && python manage.py migrate
 
-
+  bot:
+#    restart: always
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+    volumes:
+      - ./.env:/app/.env
+    command: python manage.py runbot
 
   db:
     image: postgres:14.6-alpine

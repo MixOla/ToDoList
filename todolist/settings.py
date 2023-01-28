@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'goals',
     'django_filters',
+    'bot',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -116,8 +118,17 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged-in/'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
+TG_BOT_API_TOKEN = env('TG_BOT_API_TOKEN')
+
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Todolist API',
+    'DESCRIPTION': 'API for todolist application',
+    'VERSION': '1.0.0',
 }
 
 # Static files (CSS, JavaScript, Images)

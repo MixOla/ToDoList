@@ -17,6 +17,7 @@ django-filter = "^22.1"
 marshmallow = "^3.19.0"
 marshmallow-dataclass = "^8.5.11"
 requests = "^2.28.2"
+drf-spectacular = "^0.25.1"
 
 
 [build-system]
