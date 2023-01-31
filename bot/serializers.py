@@ -18,3 +18,4 @@ class TgUserUpdateSerializer(serializers.ModelSerializer):
             raise ValidationError({"verification_code": "field is incorrect"})
         attrs["tg_user"] = tg_user
         return attrs
+

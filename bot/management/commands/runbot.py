@@ -119,7 +119,7 @@ class Command(BaseCommand):
             is_deleted=False
         ).only('id', 'title')
         self.category_mode = True
-        prefix = ['Введите номер категории зи списка доступных:']
+        prefix = ['Введите номер категории из списка доступных:']
         reply = [f'#{category.id} {category.title}' for category in categories]
         return prefix + reply
 

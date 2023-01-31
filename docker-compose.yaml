@@ -27,15 +27,15 @@ services:
   migrations:
     build: .
     image: mixola/todolist
+
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - pg_data:/var/lib/postgresql/data
-    command: python manage.py makemigrations && python manage.py migrate
+      - ./.env:/app/.env
+    command: python manage.py migrate
 
   bot:
-#    restart: always
     build:
       context: .
     depends_on:

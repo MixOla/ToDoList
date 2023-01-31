@@ -25,3 +25,5 @@ class TgUserVerificationView(GenericAPIView):
         tg_client.send_message(tg_user.tg_chat_id, "[Верификация пройдена]")
 
         return Response(instance_serializer.data)
+
+

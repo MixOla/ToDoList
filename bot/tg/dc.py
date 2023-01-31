@@ -19,7 +19,7 @@ class MessageFrom:
 
 
 @dataclass
-class MessageChat:
+class Chat:
     id: int
     type: str
     first_name: Optional[str] = None
@@ -35,7 +35,7 @@ class MessageChat:
 class Message:
     """Telegram API: https://core.telegram.org/bots/api#message"""
     message_id: int
-    chat: MessageChat
+    chat: Chat
     # override usage of keyword "from" - add underscore and metadata to map to data key
     from_: Optional[MessageFrom] = field(metadata=dict(data_key='from'), default=None)
     text: Optional[str] = field(default=None)
