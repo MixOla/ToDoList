@@ -81,6 +81,10 @@ class UpdatePasswordSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+    class Meta:
+        model = USER_MODEL
+        fields = '__all__'
+
 
 class UserSerializer(serializers.ModelSerializer):
 

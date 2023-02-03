@@ -23,6 +23,8 @@ urlpatterns = [
     path('oauth/', include('social_django.urls', namespace='social')),
     path('goals/', include('goals.urls')),
     path('bot/', include('bot.urls')),
-    path('ap/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('ap/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    # path('swagger/', SpectacularSwaggerView.as_view(url=f'http://{DOMAIN_SITE}/api/schema/'), name='swagger-ui'),
+    # path('swagger/', SpectacularSwaggerView.as_view(url=f'http://127.0.0.1:8000/api/schema/'), name='swagger-ui'),
+    path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
