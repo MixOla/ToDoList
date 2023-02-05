@@ -26,18 +26,15 @@ from core.serializers import (
 
 USER_MODEL = get_user_model()
 
-# @extend_schema_view(
-#     create=extend_schema(
-#         description="Create new user", summary='New user'),
-#     update=extend_schema(
-#         description="Update user", summary='Update'),
-# )
+
 class RegistrationView(CreateAPIView):
+    """ Регистрация пользователя. """
     model = USER_MODEL
     serializer_class = RegistrationSerializer
 
 
 class LoginView(GenericAPIView):
+    """ User login. """
     serializer_class = LoginSerializer
 
     @extend_schema(
@@ -53,6 +50,7 @@ class LoginView(GenericAPIView):
 
 
 class ProfileView(RetrieveUpdateDestroyAPIView):
+    """ Профиль пользователя. """
     serializer_class = ProfileSerializer
     queryset = USER_MODEL.objects.all()
     permission_classes = [permissions.IsAuthenticated]
@@ -74,6 +72,7 @@ class ProfileView(RetrieveUpdateDestroyAPIView):
 
 
 class UpdatePasswordView(UpdateAPIView):
+    """ Обновление пароля. """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = UpdatePasswordSerializer
 

@@ -75,8 +75,7 @@ class GoalCreateView(CreateAPIView):
 
 
 class GoalListView(ListAPIView):
-    ''' Класс получения списка целей '''
-
+    """Класс получения списка целей."""
     model = Goal
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = GoalSerializer
@@ -97,6 +96,7 @@ class GoalListView(ListAPIView):
 
 
 class GoalView(RetrieveUpdateDestroyAPIView):
+    """Класс обновления/удаления целей."""
     model = Goal
     serializer_class = GoalSerializer
     permission_classes = [permissions.IsAuthenticated, GoalPermissions]
@@ -112,12 +112,14 @@ class GoalView(RetrieveUpdateDestroyAPIView):
 
 
 class GoalCommentCreateView(CreateAPIView):
+    """Класс создания комментариев."""
     model = GoalComment
     serializer_class = GoalCommentCreateSerializer
     permission_classes = [permissions.IsAuthenticated, GoalCommentPermissions]
 
 
 class GoalCommentListView(ListAPIView):
+    """Класс получения списка комментариев."""
     model = GoalComment
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = GoalCommentSerializer
@@ -135,6 +137,7 @@ class GoalCommentListView(ListAPIView):
 
 
 class GoalCommentView(RetrieveUpdateDestroyAPIView):
+    """Класс обновления/удаления комментариев."""
     model = GoalComment
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly, GoalCommentPermissions]
     serializer_class = GoalCommentSerializer
@@ -145,12 +148,14 @@ class GoalCommentView(RetrieveUpdateDestroyAPIView):
 
 
 class BoardCreateView(CreateAPIView):
+    """Класс создания доски."""
     model = Board
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = BoardCreateSerializer
 
 
 class BoardListView(ListAPIView):
+    """Класс получения списка досок."""
     model = Board
     permission_classes = [permissions.IsAuthenticated, BoardPermissions]
     serializer_class = BoardListSerializer
@@ -163,6 +168,7 @@ class BoardListView(ListAPIView):
 
 
 class BoardView(RetrieveUpdateDestroyAPIView):
+    """Класс обновления/удаления доски."""
     model = Board
     permission_classes = [permissions.IsAuthenticated, BoardPermissions]
     serializer_class = BoardSerializer
