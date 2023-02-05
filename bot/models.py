@@ -23,5 +23,4 @@ class TgUser(models.Model):
         """Генерация случайного кода верификации"""
         code = get_random_string(10)
         self.verification_code = code
-        # self.save()
-        # return code
+
