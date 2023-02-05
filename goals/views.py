@@ -1,5 +1,6 @@
 from django.db import transaction
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import (
     filters,
     permissions
@@ -56,6 +57,7 @@ class GoalCategoryView(RetrieveUpdateDestroyAPIView):
     model = GoalCategory
     serializer_class = GoalCategorySerializer
     permission_classes = [permissions.IsAuthenticated, GoalCategoryPermissions]
+    http_method_names = ['put', 'post', 'get', 'delete']
 
     def get_queryset(self):
         return GoalCategory.objects.filter(board__participants__user=self.request.user, is_deleted=False)
@@ -98,6 +100,7 @@ class GoalView(RetrieveUpdateDestroyAPIView):
     model = Goal
     serializer_class = GoalSerializer
     permission_classes = [permissions.IsAuthenticated, GoalPermissions]
+    http_method_names = ['put', 'post', 'get', 'delete']
 
     def get_queryset(self):
         return Goal.objects.filter(category__board__participants__user=self.request.user)
@@ -135,6 +138,7 @@ class GoalCommentView(RetrieveUpdateDestroyAPIView):
     model = GoalComment
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly, GoalCommentPermissions]
     serializer_class = GoalCommentSerializer
+    http_method_names = ['put', 'post', 'get', 'delete']
 
     def get_queryset(self):
         return GoalComment.objects.filter(goal__category__board__participants__user=self.request.user)
@@ -162,6 +166,7 @@ class BoardView(RetrieveUpdateDestroyAPIView):
     model = Board
     permission_classes = [permissions.IsAuthenticated, BoardPermissions]
     serializer_class = BoardSerializer
+    http_method_names = ['put', 'post', 'get', 'delete']
 
     def get_queryset(self):
         # Обратите внимание на фильтрацию – она идет через participants

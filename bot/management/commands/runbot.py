@@ -112,7 +112,7 @@ class Command(BaseCommand):
         return prefix + reply
 
     def _create(self) -> list:
-        """Logic for /categories command - list of categories"""
+        """Logic for /create command - create goal"""
         categories = GoalCategory.objects.filter(
             board__participants__user=self.user.user,
             board__participants__role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer],
@@ -124,7 +124,7 @@ class Command(BaseCommand):
         return prefix + reply
 
     def _choose_category(self) -> str:
-        """Logic for /create command - choose category"""
+        """Logic for /choose_category command - choose category"""
 
         if not self.message.isnumeric():
             return f'Выбрана неверная категория'
